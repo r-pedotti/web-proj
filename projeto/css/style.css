@@ -7,7 +7,7 @@ body{
 	align-items: center;
 	margin:auto;
 	font-family: sans-serif;
-	font-size: 12px;
+	font-size: 14px;
 }
 
 .logo {
@@ -38,10 +38,44 @@ body{
 
 .main_text h1 {
 	font-family: 'Montserrat', sans-serif;
-    font-size: 300%;
-    font-weight: 700;
+    font-size: 350%;
+    line-height: 110%;
+	font-weight: 700;
     display: flex;
     justify-content: left;
 	box-sizing: border-box;
+}
 
+.body-text {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 18px;
+	line-height: 120%;
+	padding-top: 6%;
+	display: flex;
+	color: rgba(255, 255, 255, 0.7);
+    max-width: 360px;
+	padding-bottom: 20px;
+}
+
+.btn-cria-conta{
+	width: auto;
+    height: 100%;
+    background-color: rgba(34, 140, 219, 1);
+	border: none;
+    border-radius: 7px;
+    color: rgba(255, 255, 255, 1);
+    padding: 16px 24px;
+	font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    align-items: center;
+    transition: 0.3s;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+	max-width: 300px;	
+}
+
+.btn-cria-conta:hover {
+	
 }
