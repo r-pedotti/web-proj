@@ -75,7 +75,18 @@ body{
     text-decoration: none;
 	max-width: 300px;	
 }
-
+/*
 .btn-cria-conta:hover {
 	
+}
+*/
+.container{
+	display: flex;
+	max-width: 100%;
+}
+
+.container img{
+	margin-top: 70px; 
+	width: 39%; 
+	height: 39%;
 }
