@@ -75,11 +75,11 @@ body{
     text-decoration: none;
 	max-width: 300px;	
 }
-/*
+
 .btn-cria-conta:hover {
-	
+	transform: translateY(-4px);	
 }
-*/
+
 .container{
 	display: flex;
 	max-width: 100%;
