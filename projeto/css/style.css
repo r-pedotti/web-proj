@@ -14,11 +14,10 @@ body{
 	width: 140px;
 	padding: 20px;
 	margin-right: 20px;
-	}
+}
 
 .text_header {
 	flex-grow: 8;
-
 }
 
 span {
@@ -98,7 +97,6 @@ span {
     height: 100px;
     margin-top: 40px;
 	padding-bottom: 20px;
-
 }
 
 .bdtext_left {
@@ -153,11 +151,32 @@ p {
 	@media only screen and (max-width: 360px) {
 		.flutuante {float: none; width: 100%; }
 		.text_header { display: none; }
-		.main_text { display: none; }
-		.body_text {display:none;}
+		.main_text { 
+			font-size: 9px; 
+			margin-left: 28px;
+			margin-top: 50px;
+			width: 90%;
+			height: 60%;
+		}
+
+		p {
+			font-size: 16px;
+		}
+
+		.body_text {
+			width: 60%;
+			margin-left: 28px;
+		}
+
+		.btn_cria_conta{
+			margin: 0px;
+			margin-top: 70px;
+			margin-left: 10px;
+		}
+
 		.container img {display: none;}
 		.navbar {width: 360px;}
 		.icon {margin: 0px;}
 		.logo {margin: 0px;}
-
+		.conteudo { margin: 0px; }
 	}
