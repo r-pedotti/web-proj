@@ -18,9 +18,15 @@
 		</div>
 		
 			<button class="cadastre">Cadastre-se</button>
-		
-		<button class = "login">
-			<img class="icon" src="img/icon.png"></img>
+			<input type='button' class="login" value='Entrar' onClick="show('dropdownLogin')"> 
+				<div class="dropdownLogin">
+					<label>Usuário</label>
+					<input type="text">
+					<label>Senha</label>
+					<input type="password">
+				</div> 
+			</input>
+
 		</button>
 	</header>
 	<!-- F I M   HEADER -->
@@ -42,6 +48,17 @@
 				</div>
 			</div>
 		</div>
+
+		<script>
+			function show() {
+				if (document.getElementById('drop').style.display == 'none') {
+					document.getElementById('drop').style.display = 'block'; }
+			   else  {
+					document.getElementById('drop').style.display = 'none'; }
+			   }
+			
+		</script>
+
 
 		<img class="div-img" src="../html/img/img1.jpeg">
 	</main>
