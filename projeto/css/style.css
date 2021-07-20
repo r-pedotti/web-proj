@@ -39,14 +39,20 @@ span {
 .login {
     font-size: 14px;
     flex-grow: 0.3;
-	width: 40px;
-	height: 40px;
 	margin-right: 45px;
 	margin-bottom: 5px;
+    background-color: #9cbdce;
+    color: #0c3649;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 26px;
+    height: 45px;
+    width: 95px;
+    border: 0px;
 }
 
 .dropdownLogin {
-	display:none;
+	display:none;*/
     background-color: #ffffff;
     width: 235px;
     position: absolute;
@@ -55,8 +61,8 @@ span {
     padding: 20px 20px 10px;
     box-sizing: border-box;
     border-radius: 4px 0 4px 4px;
-
 }
+
 .entrar {
 	position: relative;
 }
