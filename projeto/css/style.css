@@ -40,6 +40,10 @@ span {
     font-family: Montserrat,sans-serif;
     font-size: 14px;
     flex-grow: 0.3;
+	width: 40px;
+	height: 40px;
+	margin-right: 45px;
+	margin-bottom: 5px;
 }
 
 .cadastre {
@@ -49,13 +53,12 @@ span {
     padding: 13px 20px;
     border-radius: 30px;
     font-weight: 700;
+	margin-right: 15px;
 }
 
 .icon {
 	width: 40px;
 	height: 40px;
-	margin-right: 45px;
-	margin-bottom: 5px;
 }
 
 /* segunda parte: após nav */
