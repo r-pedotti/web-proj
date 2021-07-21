@@ -67,6 +67,14 @@ span {
 	position: relative;
 }
 
+.btn_limpar {
+	margin-left: 70px;
+	margin-top: 5px;
+}
+.btn_ok {
+	margin-top: 5px;
+}
+
 .cadastre {
 	border: none;
 	background: #D9E7EE;
@@ -75,11 +83,6 @@ span {
     border-radius: 30px;
     font-weight: 700;
 	margin-right: 15px;
-}
-
-.icon {
-	width: 40px;
-	height: 40px;
 }
 
 /* segunda parte: após nav */
