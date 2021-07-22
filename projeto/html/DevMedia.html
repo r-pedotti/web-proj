@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" href="../css/reset.css">
 	<link rel="stylesheet" href="../css/style.css">
 	<title>DevMedia | Plataforma para Programadores</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
 	<!-- HEADER -->
@@ -17,11 +17,10 @@
 		<input type='button' class="login" value='Entrar' onClick="show('dropdownLogin')"> 
 				<div id = 'drop' class="dropdownLogin">
 					<label>Usuário</label>
-					<input type="login"/>
+					<input class = "email" type="login"/>
 					<label>Senha</label>
-					<input type="password"/>
-					<button class = "btn_ok">OK</button>
-					<button class = "btn_limpar">LIMPAR</button>
+					<input class = "pass" type="password"/>
+					<button class = "btn_ok">L O G I N</button>
 				</div> 
 			</input>
 		</button>
@@ -53,8 +52,18 @@
 		if (document.getElementById('drop').style.display === 'none') {
 			document.getElementById('drop').style.display = 'block'; }
 		else  {
-			document.getElementById('drop').style.display = 'none'; }
-}		
+			document.getElementById('drop').style.display = 'none'; } 
+		}
+		
+	document.querySelector('.btn_ok').addEventListener('click', async () => {
+		
+		var email = document.querySelector('.email').value
+		var password = document.querySelector('.pass').value
+		let json = await axios.get('https://reqres.in/api/login');
+		console.log(email,password)	
+		var teste = json.data.data.email;
+		console.log(teste);
+	});	
 </script>
 </body>
 </html>
