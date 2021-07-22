@@ -14,7 +14,7 @@
 			<span>Tecnologias</span>
 			<span>Contrate um Programador</span>
 		</div>
-		<input type='button' class="login" value='Entrar' onClick="show('dropdownLogin')"> 
+		<input type='button' class="login" value='Entrar' onClick="show_login('dropdownLogin')"> 
 				<div id = 'drop' class="dropdownLogin">
 					<label>Usuário</label>
 					<input class = "email" type="login"/>
@@ -48,22 +48,33 @@
 	</main>
 <!-- J S  -->
 <script>
-	function show() {
+	function show_login() {
 		if (document.getElementById('drop').style.display === 'none') {
 			document.getElementById('drop').style.display = 'block'; }
 		else  {
 			document.getElementById('drop').style.display = 'none'; } 
 		}
 		
+
 	document.querySelector('.btn_ok').addEventListener('click', async () => {
+			var email = document.querySelector('.email').value
+			var password = document.querySelector('.pass').value
+		let json = await axios.post('https://reqres.in/api/login', {
+			
+			email: ''+ email,
+			password: '' +password
+		});
 		
-		var email = document.querySelector('.email').value
-		var password = document.querySelector('.pass').value
-		let json = await axios.get('https://reqres.in/api/login');
+
+
+
+
+		
 		console.log(email,password)	
-		var teste = json.data.data.email;
-		console.log(teste);
+		
+		console.log(json);
 	});	
+		
 </script>
 </body>
 </html>
