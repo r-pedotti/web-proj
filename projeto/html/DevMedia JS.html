@@ -24,9 +24,6 @@
 			<input class = "api_input" placeholder="P E S Q U I S A R"></input>
 			<div class = "result">
 				<ul class = "lista_api">
-					<li>rick</li>
-					<hr>
-					<li>morty</li>
 				</ul>
 			</div>
 		</div>
@@ -59,19 +56,20 @@
 		input.addEventListener('keyup', function() {
 			if (input.value != null ) {
 				var pesquisa = input.value;
-				
+				axios.get('https://rickandmortyapi.com/api/character/?name='+ pesquisa )
+				.then(function(res){		
+					var docs = res.data.results;
+					console.log(docs);	
+						for(var i=0;i < docs.length && i<100 ;i++) {
+							var li = document.createElement('li');
+							li.innerHTML = docs[i].name;
+							lista_api.appendChild(li);
+						}
+				});
 			}
+	
 
-	axios.get('https://rickandmortyapi.com/api/character/?name='+ name )
-	.then(function(res){		
-		var docs = res.data.results;
-		console.log(docs);	
-			for(var i=0;i < docs.length && i<100 ;i++) {
-            	var li = document.createElement('li');
-            	li.innerHTML = docs[i].name;
-            	lista_api.appendChild(li);
-       		}
-	});
+	
 
 	
 
