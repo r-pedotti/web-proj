@@ -12,17 +12,27 @@
 		<img src="../devmedia_logo.png" alt="" class="logo">
 		<div class=text_header>
 			<span>Tecnologias</span>
-			<span>Contrate um Programador</span>
-			<input class = "api_input"></input>
+			<span>Contrate um Programador</span>		
 		</div>
-		
 		<input type='button' class="login sair" value='SAIR'></input>
 		</button>
 	</header>
 	<!-- F I M   HEADER -->
 	<!-- MAIN -->
 	<main>
+		<div class = "search_box">
+			<input class = "api_input" placeholder="P E S Q U I S A R"></input>
+			<div class = "result">
+				<ul class = "lista_api">
+					<li>rick</li>
+					<hr>
+					<li>morty</li>
+				</ul>
+			</div>
+		</div>
 		<div class="div-dados">
+			
+
 			<div class="div1">
 				<h1>Nossa missão é fazer de você um</h1>
 				<h1 class="programador">Programador</h1>
@@ -36,18 +46,42 @@
 				<div class="div3">
 					<button class="btn_cria_conta">Crie uma conta grátis</button>
 				</div>
+				
 			</div>
+			
 		</div>
 		<img class="div-img" src="../img1.jpeg">
 	</main>
 <!-- J S  -->
 <script>
-	
-/*{
-    "email": "eve.holt@reqres.in",
-    "password": "cityslicka"
-}*/
+	var lista_api = document.querySelector('.lista_api');
+	var input = document.querySelector('.api_input');
+		input.addEventListener('keyup', function() {
+			if (input.value != null ) {
+				var pesquisa = input.value;
+				
+			}
 
+	axios.get('https://rickandmortyapi.com/api/character/?name='+ name )
+	.then(function(res){		
+		var docs = res.data.results;
+		console.log(docs);	
+			for(var i=0;i < docs.length && i<100 ;i++) {
+            	var li = document.createElement('li');
+            	li.innerHTML = docs[i].name;
+            	lista_api.appendChild(li);
+       		}
+	});
+
+	
+
+
+
+		
+		});
+		
+
+		
 		
 </script>
 </body>

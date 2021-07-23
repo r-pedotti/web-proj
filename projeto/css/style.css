@@ -7,7 +7,27 @@ html,body{
 	height: 100%;
 }
 
+.search_box {
+	background-color: black;
+	margin-top: 35px;
+	overflow: auto;	
+}
+
 .api_input {
+	width: 500px;
+	height: 30px;	
+}
+
+.result {
+	width: 507px;
+	height: 500px;
+	background-color: #D9E7EE;
+	position: relative;
+
+}
+
+.lista_api {
+	margin: 0px
 }
 
 header{
@@ -29,6 +49,7 @@ header{
 .text_header {
 	flex-grow: 8;
 }
+
 
 span {
 	font-family: sans-serif;
@@ -161,15 +182,18 @@ main{
 	flex: 1;
 	justify-content: center;
 	align-items: center;
-	flex-direction: row;
+	flex-direction: column;
 }
 .div-dados{
 	width: 45%;
-	padding: 100px 10px;
+	padding: 100px;
+	display: block;
+	
 }
 .div-img{
-  width: 55%;
+    width: 55%;
 	max-width: 400px;
+	
 }
 .contant2{
 	width: 100%;

@@ -78,8 +78,9 @@
 			console.log(json);
 			console.log(json.data.token)
 
-			if(json.status = 200) {
-				console.log('dota');
+			if(json.status === 200 && json.readyState ===4) {
+				console.log('logued in!!');
+				//xamar aqui a outra página com o input e configurar token??
 			}
 
 
