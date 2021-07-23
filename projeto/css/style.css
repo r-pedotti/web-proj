@@ -7,6 +7,9 @@ html,body{
 	height: 100%;
 }
 
+.api_input {
+}
+
 header{
 	background-color: white;
 	display: flex;
@@ -50,6 +53,7 @@ span {
     width: 95px;
     border: 0px;
 }
+
 
 .dropdownLogin {
 	display:none;

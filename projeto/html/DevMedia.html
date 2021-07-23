@@ -13,8 +13,9 @@
 		<div class=text_header>
 			<span>Tecnologias</span>
 			<span>Contrate um Programador</span>
+			
 		</div>
-		<input type='button' class="login" value='Entrar' onClick="show_login('dropdownLogin')"> 
+		<input type='button' class="login" value='ENTRAR' onClick="show_login('dropdownLogin')"> 
 				<div id = 'drop' class="dropdownLogin">
 					<label>Usuário</label>
 					<input class = "email" type="login"/>
@@ -54,25 +55,41 @@
 		else  {
 			document.getElementById('drop').style.display = 'none'; } 
 		}
-		
-
+/*{
+    "email": "eve.holt@reqres.in",
+    "password": "cityslicka"
+}*/
 	document.querySelector('.btn_ok').addEventListener('click', async () => {
+		let token = localStorage.getItem('token');
+		try {
 			var email = document.querySelector('.email').value
-			var password = document.querySelector('.pass').value
-		let json = await axios.post('https://reqres.in/api/login', {
+			var pass = document.querySelector('.pass').value
 			
-			email: ''+ email,
-			password: '' +password
-		});
+			let json = await axios.post('https://reqres.in/api/login', {
+				email:  email,
+				password: pass
+			});
+			
+			if(json.data.token) {
+				token = json.data.token;
+				localStorage.setItem('token',token);
+			}
+			console.log(email,pass)	
+			console.log(json);
+			console.log(json.data.token)
+
+			if(json.status = 200) {
+				console.log('dota');
+			}
+
+
+
+		} catch(e) {
+			console.log(e);
+		}
+
 		
-
-
-
-
 		
-		console.log(email,password)	
-		
-		console.log(json);
 	});	
 		
 </script>

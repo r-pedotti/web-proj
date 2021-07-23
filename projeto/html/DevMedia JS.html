@@ -1,30 +1,22 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-	<link rel="stylesheet" href="../css/reset.css">
 	<link rel="stylesheet" href="../css/style.css">
 	<title>DevMedia | Plataforma para Programadores</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
-
 <body>
 	<!-- HEADER -->
 	<header>
-		<img src="img/devmedia_logo.png" alt="" class="logo">
+		<img src="../devmedia_logo.png" alt="" class="logo">
 		<div class=text_header>
-			<span>Tecnologias </span>
+			<span>Tecnologias</span>
 			<span>Contrate um Programador</span>
+			<input class = "api_input"></input>
 		</div>
-		<input type='button' class="login" value='Entrar' onClick="show('dropdownLogin')"> 
-				<div id = 'drop' class="dropdownLogin">
-					<label>Usuário</label>
-					<input type="text">
-					<label>Senha</label>
-					<input type="password">
-				</div> 
-			</input>
-
+		
+		<input type='button' class="login sair" value='SAIR'></input>
 		</button>
 	</header>
 	<!-- F I M   HEADER -->
@@ -46,20 +38,17 @@
 				</div>
 			</div>
 		</div>
-
-		<script>
-			function show() {
-				if (document.getElementById('drop').style.display === 'none') {
-					document.getElementById('drop').style.display = 'block'; }
-				else  {
-					document.getElementById('drop').style.display = 'none'; }
-		}		
-		</script>
-
-
-		<img class="div-img" src="../html/img/img1.jpeg">
+		<img class="div-img" src="../img1.jpeg">
 	</main>
+<!-- J S  -->
+<script>
+	
+/*{
+    "email": "eve.holt@reqres.in",
+    "password": "cityslicka"
+}*/
+
+		
+</script>
 </body>
-
-
 </html>
