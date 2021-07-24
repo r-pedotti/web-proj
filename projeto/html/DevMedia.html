@@ -28,6 +28,12 @@
 			</input>
 		</button>
 	</header>
+	<header id="header2" style="display: none;">
+		<img src="../devmedia_logo.png" alt="" class="logo">
+		<div class=text_header>
+			<label>Pesquise por Episódio: </label><input id="input-ep" type="text">
+			<button>Pesquisar</button>			
+	</header>
 	<!-- F I M   HEADER -->
 	<!-- MAIN -->
 	<main>
@@ -96,7 +102,8 @@
 			try{
 					document.getElementById('header1').style.display='none';
 					document.getElementById('main-dados').style.display='none';
-					document.getElementById('img-div').style.display='none'
+					document.getElementById('img-div').style.display='none';
+					document.getElementById('header2').style.display='block'					
 			}
 			catch(e){
 				console.log("erro aqui")
