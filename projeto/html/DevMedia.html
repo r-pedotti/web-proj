@@ -50,10 +50,7 @@
 <!-- J S  -->
 <script>
 	function show_login() {
-		if (document.getElementById('drop').style.display === 'none') {
-			document.getElementById('drop').style.display = 'block'; }
-		else  {
-			document.getElementById('drop').style.display = 'none'; } 
+		document.getElementById('drop').style.display = 'block';
 		}
 /*{
     "email": "eve.holt@reqres.in",
@@ -76,7 +73,8 @@
 			}
 			console.log(email,pass)	
 			console.log(json);
-			console.log(json.data.token)
+			console.log(json.data.token+"na api response");
+			console.log(localStorage.token+"no local storage;")
 
 			if(json.status === 200 && json.readyState ===4) {
 				console.log('logued in!!');
