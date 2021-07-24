@@ -21,7 +21,9 @@
 					<input class = "email" type="login"/>
 					<label>Senha</label>
 					<input class = "pass" type="password"/>
+					<label id="validate" style="color: red; display: none;" >Usuário e/ou Senha invalido.</label>
 					<button class = "btn_ok">L O G I N</button>
+					<button id = "close" style="background-color: red;" onclick="close_login()"><b>X</b></button>
 				</div> 
 			</input>
 		</button>
@@ -51,7 +53,11 @@
 <script>
 	function show_login() {
 		document.getElementById('drop').style.display = 'block';
+		document.getElementById('validate').style.display='none'
 		}
+	function close_login(){
+		document.getElementById('drop').style.display = 'none';
+	}
 /*{
     "email": "eve.holt@reqres.in",
     "password": "cityslicka"
@@ -67,10 +73,12 @@
 				password: pass
 			});
 			
-			if(json.data.token) {
+				if(json.data.token) {
 				token = json.data.token;
 				localStorage.setItem('token',token);
-			}
+				document.getElementById('drop').style.display='none'
+				}
+			
 			console.log(email,pass)	
 			console.log(json);
 			console.log(json.data.token+"na api response");
@@ -81,10 +89,10 @@
 				//xamar aqui a outra página com o input e configurar token??
 			}
 
-
-
 		} catch(e) {
-			console.log(e);
+			var email = document.querySelector('.email').value = "";
+			var pass = document.querySelector('.pass').value = "";
+			document.getElementById('validate').style.display='block'
 		}
 
 		
