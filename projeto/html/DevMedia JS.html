@@ -62,8 +62,11 @@
 					console.log(docs);	
 						for(var i=0;i < docs.length && i<100 ;i++) {
 							var li = document.createElement('li');
+							var img = document.createElement('img');
 							li.innerHTML = docs[i].name;
+							img.innerHTML = docs[i].image;
 							lista_api.appendChild(li);
+							lista_api.appendChild(img);
 						}
 				});
 			}
