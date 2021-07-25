@@ -31,15 +31,24 @@
 	<header id="header2" style="display: none;">
 		<img src="../devmedia_logo.png" alt="" class="logo">
 		<div class=text_header>
-			<label>Pesquise por Personagem: </label><input class = "api_input" type="text">
+			<label>Pesquise por Personagem:</label><input class = "api_input" type="text">
 			<button onclick="search()" >Pesquisar</button>
 			<ul class = "lista_api">
 			</ul>
+		</div>
 	</header>
 	<!-- F I M   HEADER -->
 	<!-- MAIN -->
 	<main>
+		<div class = "search_box" id = "search_box">
+			<input class = "api_input" placeholder="P E S Q U I S A R"></input>
+			<div class = "result">
+				<ul class = "lista_api">
+				</ul>
+			</div>
+		</div>
 		<div class="div-dados" id="main-dados">
+			
 			<div class="div1">
 				<h1>Nossa missão é fazer de você um</h1>
 				<h1 class="programador">Programador</h1>
@@ -128,8 +137,33 @@
 					document.getElementById('header1').style.display='none';
 					document.getElementById('main-dados').style.display='none';
 					document.getElementById('img-div').style.display='none';
-					document.getElementById('header2').style.display='block'
-			}
+					document.getElementById('header2').style.display='block';
+					document.getElementById('search_box').style.display='block';
+
+					var lista_api = document.querySelector('.lista_api');
+					var input = document.querySelector('.api_input');
+					input.addEventListener('keyup', async () => {
+					//input.addEventListener('keyup', function() {
+					if (input.value != null ) {
+						var pesquisa = input.value;
+						
+						await axios.get('https://rickandmortyapi.com/api/character/?name='+ pesquisa )
+						.then(function(res){		
+							var docs = res.data.results;
+							console.log(docs);	
+								for(var i=0;i < docs.length && i<100 ;i++) {
+									var li = document.createElement('li');
+									var img = document.createElement('img');
+									li.innerHTML = docs[i].name;
+									img.innerHTML = docs[i].image;
+									lista_api.appendChild(li);
+									lista_api.appendChild(img);
+								}
+						});
+					}
+					
+					});
+				}
 			catch(e){
 				console.log("erro aqui")
 			}	

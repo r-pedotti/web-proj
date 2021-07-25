@@ -11,6 +11,7 @@ html,body{
 	background-color: black;
 	margin-top: 35px;
 	overflow: auto;	
+	display: none;
 }
 
 .api_input {
@@ -182,7 +183,7 @@ main{
 	flex: 1;
 	justify-content: center;
 	align-items: center;
-	flex-direction: column;
+	flex-direction: row;
 }
 .div-dados{
 	width: 45%;
