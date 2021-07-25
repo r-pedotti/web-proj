@@ -24,11 +24,18 @@ html,body{
 	height: 500px;
 	background-color: #D9E7EE;
 	position: relative;
+	display: none;
 
 }
 
 .lista_api {
-	margin: 0px
+	margin: 0px;
+}
+
+.search{
+	color: #1F4F66;
+	display: none;
+	margin-top: 35px;
 }
 
 header{

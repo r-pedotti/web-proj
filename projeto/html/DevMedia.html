@@ -30,23 +30,26 @@
 	</header>
 	<header id="header2" style="display: none;">
 		<img src="../devmedia_logo.png" alt="" class="logo">
-		<div class=text_header>
+	<!--	<div class=text_header>
 			<label>Pesquise por Personagem:</label><input class = "api_input" type="text">
 			<button onclick="search()" >Pesquisar</button>
 			<ul class = "lista_api">
 			</ul>
-		</div>
+		</div>-->
 	</header>
 	<!-- F I M   HEADER -->
 	<!-- MAIN -->
 	<main>
 		<div class = "search_box" id = "search_box">
 			<input class = "api_input" placeholder="P E S Q U I S A R"></input>
-			<div class = "result">
+			
+			<div class = "result" id = "result">
 				<ul class = "lista_api">
 				</ul>
 			</div>
+			
 		</div>
+		<button onclick="search()" class = "search" id="search">Pesquisar</button>
 		<div class="div-dados" id="main-dados">
 			
 			<div class="div1">
@@ -76,7 +79,7 @@
 		document.getElementById('drop').style.display = 'none';
 	}
 
-	const search = async () =>{
+	/*const search = async () =>{
 
 		var input = document.querySelector('.api_input');
 		input.addEventListener('keyup', function() {
@@ -98,7 +101,7 @@
 			}
 		});
 	}
-/*{
+{
     "email": "eve.holt@reqres.in",
     "password": "cityslicka"
 }*/
@@ -139,12 +142,15 @@
 					document.getElementById('img-div').style.display='none';
 					document.getElementById('header2').style.display='block';
 					document.getElementById('search_box').style.display='block';
+					document.getElementById('search').style.display='block';
 
 					var lista_api = document.querySelector('.lista_api');
 					var input = document.querySelector('.api_input');
-					input.addEventListener('keyup', async () => {
-					//input.addEventListener('keyup', function() {
-					if (input.value != null ) {
+					var search = document.querySelector('.search')
+					search.addEventListener('click', async () => {
+					
+					if (input.value != "" ) {
+						document.getElementById('result').style.display='block';
 						var pesquisa = input.value;
 						
 						await axios.get('https://rickandmortyapi.com/api/character/?name='+ pesquisa )
@@ -160,6 +166,8 @@
 									lista_api.appendChild(img);
 								}
 						});
+					} else {
+						alert("PESQUISA VAZIA")
 					}
 					
 					});
