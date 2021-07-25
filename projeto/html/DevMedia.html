@@ -57,11 +57,11 @@
 	</main>
 <!-- J S  -->
 <script>
-	function show_login() {
+	var show_login = () => {
 		document.getElementById('drop').style.display = 'block';
 		document.getElementById('validate').style.display='none'
 		}
-	function close_login(){
+	var close_login = () => {
 		document.getElementById('drop').style.display = 'none';
 	}
 /*{
@@ -71,8 +71,8 @@
 	document.querySelector('.btn_ok').addEventListener('click', async () => {
 		let token = localStorage.getItem('token');
 		try {
-			var email = document.querySelector('.email').value
-			var pass = document.querySelector('.pass').value
+			let email = document.querySelector('.email').value
+			let pass = document.querySelector('.pass').value
 			
 			let json = await axios.post('https://reqres.in/api/login', {
 				email:  email,
@@ -93,8 +93,8 @@
 			console.log(localStorage.active+" status")
 		}
 		catch(e) {
-			var email = document.querySelector('.email').value = "";
-			var pass = document.querySelector('.pass').value = "";
+			let email = document.querySelector('.email').value = "";
+			let pass = document.querySelector('.pass').value = "";
 			document.getElementById('validate').style.display='block';
 			localStorage.active=400;
 		}	
