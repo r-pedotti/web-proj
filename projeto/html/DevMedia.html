@@ -157,32 +157,19 @@
 						.then(function(res){		
 							var docs = res.data.results;
 							console.log(docs.status);
-							if (res.status === 200) {
+							if (res.status === 200) 	{
 								document.getElementById('result').style.display='block';
 								console.log(docs);	
 									for(var i=0;i < docs.length && i<100 ;i++) {
 										var li = document.createElement('li');
 										var img = document.createElement('img');
 
-										var href = document.createElement('href');
-										var a = document.createElement('a');
-										
-										var link = document.createElement('link');
-
 										li.innerHTML = docs[i].name;
 										img.innerHTML = docs[i].image;
-										href.innerHTML = docs[i].image;
-										a.innerHTML = docs[i].image;
-										
-										link.innerHTML = docs[i].image;
 											
 										lista_api.appendChild(li);
 										lista_api.appendChild(img);
-										lista_api.appendChild(href);
-										lista_api.appendChild(a);
-										
-										lista_api.appendChild(link);
-										//lista_api.appendChild(teste);
+										lista_api.setAttribute('src', img);
 
 								
 									}
