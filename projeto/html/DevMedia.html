@@ -31,8 +31,10 @@
 	<header id="header2" style="display: none;">
 		<img src="../devmedia_logo.png" alt="" class="logo">
 		<div class=text_header>
-			<label>Pesquise por Episódio: </label><input id="input-ep" type="text">
-			<button>Pesquisar</button>			
+			<label>Pesquise por Personagem: </label><input class = "api_input" type="text">
+			<button onclick="search()" >Pesquisar</button>
+			<ul class = "lista_api">
+			</ul>
 	</header>
 	<!-- F I M   HEADER -->
 	<!-- MAIN -->
@@ -60,9 +62,33 @@
 	function show_login() {
 		document.getElementById('drop').style.display = 'block';
 		document.getElementById('validate').style.display='none'
-		}
+	}
+	
 	function close_login(){
 		document.getElementById('drop').style.display = 'none';
+	}
+
+	const search = async () =>{
+
+		var input = document.querySelector('.api_input');
+		input.addEventListener('keyup', function() {
+			if (input.value != null ) {
+				var pesquisa = input.value;
+				axios.get('https://rickandmortyapi.com/api/character/?name='+ pesquisa)
+				.then(function(res){		
+					var docs = res.data.results;
+					console.log(docs);	
+						for(var i=0;i < docs.length && i<100 ;i++) {
+							var li = document.createElement('li');
+							var img = document.createElement('img');
+							li.innerHTML = docs[i].name;
+							img.innerHTML = docs[i].image;
+							lista_api.appendChild(li);
+							lista_api.appendChild(img);
+						}
+				});
+			}
+		});
 	}
 /*{
     "email": "eve.holt@reqres.in",
@@ -103,7 +129,7 @@
 					document.getElementById('header1').style.display='none';
 					document.getElementById('main-dados').style.display='none';
 					document.getElementById('img-div').style.display='none';
-					document.getElementById('header2').style.display='block'					
+					document.getElementById('header2').style.display='block'
 			}
 			catch(e){
 				console.log("erro aqui")
