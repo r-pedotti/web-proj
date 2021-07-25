@@ -12,6 +12,7 @@ html,body{
 	margin-top: 35px;
 	overflow: auto;	
 	display: none;
+	max-height: 507
 }
 
 .api_input {

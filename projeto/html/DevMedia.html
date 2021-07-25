@@ -47,7 +47,6 @@
 				<ul class = "lista_api">
 				</ul>
 			</div>
-			
 		</div>
 		<button  class = "search" id="search">Pesquisar</button>
 		<div class="div-dados" id="main-dados">
@@ -102,7 +101,7 @@
 		});
 	}
 {
-    "email": "eve.holt@reqres.in",
+    "email": "	"eve.holt@reqres.in",
     "password": "cityslicka"
 }*/
 	document.querySelector('.btn_ok').addEventListener('click', async () => {
@@ -150,20 +149,45 @@
 					search.addEventListener('click', async () => {
 					
 					if (input.value != "" ) {
-						document.getElementById('result').style.display='block';
+						
+						
 						var pesquisa = input.value;
 						
 						await axios.get('https://rickandmortyapi.com/api/character/?name='+ pesquisa )
 						.then(function(res){		
 							var docs = res.data.results;
-							console.log(docs);	
-								for(var i=0;i < docs.length && i<100 ;i++) {
-									var li = document.createElement('li');
-									var img = document.createElement('img');
-									li.innerHTML = docs[i].name;
-									img.innerHTML = docs[i].image;
-									lista_api.appendChild(li);
-									lista_api.appendChild(img);
+							console.log(docs.status);
+							if (res.status === 200) {
+								document.getElementById('result').style.display='block';
+								console.log(docs);	
+									for(var i=0;i < docs.length && i<100 ;i++) {
+										var li = document.createElement('li');
+										var img = document.createElement('img');
+
+										var href = document.createElement('href');
+										var a = document.createElement('a');
+										
+										var link = document.createElement('link');
+
+										li.innerHTML = docs[i].name;
+										img.innerHTML = docs[i].image;
+										href.innerHTML = docs[i].image;
+										a.innerHTML = docs[i].image;
+										
+										link.innerHTML = docs[i].image;
+											
+										lista_api.appendChild(li);
+										lista_api.appendChild(img);
+										lista_api.appendChild(href);
+										lista_api.appendChild(a);
+										
+										lista_api.appendChild(link);
+										//lista_api.appendChild(teste);
+
+								
+									}
+								} else {
+									alert('Pesquisa não encontrada!!');
 								}
 						});
 					} else {
