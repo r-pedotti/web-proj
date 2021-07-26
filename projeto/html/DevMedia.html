@@ -136,8 +136,8 @@
 		}	
 	
 
-		
-			do {
+		if(localStorage.token === json.data.token){
+			
 			try{
 					document.getElementById('header1').style.display='none';
 					document.getElementById('main-dados').style.display='none';
@@ -177,7 +177,8 @@
 			catch(e){
 				console.log("erro aqui")
 			}	
-		} while(localStorage.token === json.data.token) 
+		}
+		else console.log("difere");
 		
 	});	
 </script>
