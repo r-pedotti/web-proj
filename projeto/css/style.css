@@ -7,11 +7,17 @@ html,body{
 	height: 100%;
 }
 
+.imge {
+	width: 200px;
+	height: 200px;
+}
+
 .search_box {
 	background-color: black;
 	margin-top: 35px;
 	overflow: auto;	
 	display: none;
+	max-height: 507
 }
 
 .api_input {
