@@ -105,22 +105,22 @@
     "password": "cityslicka"
 }*/
 	document.querySelector('.btn_ok').addEventListener('click', async () => {
-		let token = localStorage.getItem('token');
+		var token = localStorage.getItem('token');
 		try {
 			let email = document.querySelector('.email').value
 			let pass = document.querySelector('.pass').value
 			
-			let json = await axios.post('https://reqres.in/api/login', {
+			var json = await axios.post('https://reqres.in/api/login', {
 				email:  email,
 				password: pass
 			});
 			
-				if(json.data.token) {
+			if(json.data.token) {
 				token = json.data.token;
 				localStorage.setItem('token',token);
 				localStorage.setItem('active',json.status);
 				document.getElementById('drop').style.display='none'
-				}
+			}
 			
 			console.log(email,pass)	
 			console.log(json);
@@ -134,7 +134,10 @@
 			document.getElementById('validate').style.display='block';
 			localStorage.active=400;
 		}	
-		if(localStorage.active == 200){
+	});
+		
+		if(localStorage.token === json.data.token){
+			
 			try{
 					document.getElementById('header1').style.display='none';
 					document.getElementById('main-dados').style.display='none';
@@ -147,31 +150,19 @@
 					var input = document.querySelector('.api_input');
 					var search = document.querySelector('.search')
 					search.addEventListener('click', async () => {
-					
 					if (input.value != "" ) {
-						
-						
 						var pesquisa = input.value;
-						
 						await axios.get('https://rickandmortyapi.com/api/character/?name='+ pesquisa )
 						.then(function(res){		
 							var docs = res.data.results;
-							console.log(docs.status);
-							if (res.status === 200) 	{
+							console.log(res.status);
+							if (res.status === 200){
 								document.getElementById('result').style.display='block';
 								console.log(docs);	
 									for(var i=0;i < docs.length && i<100 ;i++) {
 										var li = document.createElement('li');
-										var img = document.createElement('img');
-
 										li.innerHTML = docs[i].name;
-										img.innerHTML = docs[i].image;
-											
 										lista_api.appendChild(li);
-										lista_api.appendChild(img);
-										lista_api.setAttribute('src', img);
-
-								
 									}
 								} else {
 									alert('Pesquisa não encontrada!!');
@@ -188,7 +179,7 @@
 			}	
 		}
 		else console.log("difere");
-	});	
+		
 		
 </script>
 </body>
