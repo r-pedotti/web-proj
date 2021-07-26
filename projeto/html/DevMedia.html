@@ -134,10 +134,10 @@
 			document.getElementById('validate').style.display='block';
 			localStorage.active=400;
 		}	
-	});
+	
+
 		
-		if(localStorage.token === json.data.token){
-			
+			do {
 			try{
 					document.getElementById('header1').style.display='none';
 					document.getElementById('main-dados').style.display='none';
@@ -177,10 +177,9 @@
 			catch(e){
 				console.log("erro aqui")
 			}	
-		}
-		else console.log("difere");
+		} while(localStorage.token === json.data.token) 
 		
-		
+	});	
 </script>
 </body>
 </html>
