@@ -14,6 +14,7 @@
 			<span>Tecnologias</span>
 			<span>Contrate um Programador</span>
 		</div>
+		<!--botão login-->
 		<input type='button' class="login" id="login" value='ENTRAR' onClick="show_login('dropdownLogin')"> 
 				<div id = 'drop' class="dropdownLogin">
 					<label>Usuário</label>
@@ -24,7 +25,6 @@
 					<button class = "btn_ok">L O G I N</button>
 					<button id = "close" style="background-color: red;" onclick="close_login()"><b>X</b></button>
 				</div> 
-			</input>
 			<input type='button' class="login_sair" id="login_sair" value='SAIR'></input>
 		</button>
 	</header>
@@ -61,6 +61,9 @@
 	</main>
 <!-- J S  -->
 <script>
+	/*               eve.holt@reqres.in      */
+	//---------------------------------------
+	//             responsável por faver o botao login aparecer e sumir
 	var show_login = () => {
 		document.getElementById('drop').style.display = 'block';
 		document.getElementById('validate').style.display='none'
@@ -68,117 +71,90 @@
 	var close_login = () => {
 		document.getElementById('drop').style.display = 'none';
 	}
-
-	/*const search = async () =>{
-
-		var input = document.querySelector('.api_input');
-		input.addEventListener('keyup', function() {
-			if (input.value != null ) {
-				var pesquisa = input.value;
-				axios.get('https://rickandmortyapi.com/api/character/?name='+ pesquisa)
-				.then(function(res){		
-					var docs = res.data.results;
-					console.log(docs);	
-						for(var i=0;i < docs.length && i<100 ;i++) {
-							var li = document.createElement('li');
-							var img = document.createElement('img');
-							li.innerHTML = docs[i].name;
-							img.innerHTML = docs[i].image;
-							lista_api.appendChild(li);
-							lista_api.appendChild(img);
-						}
-				});
-			}
-		});
-	}
-{
-    "email": "	"eve.holt@reqres.in",
-    "password": "cityslicka"
-}*/var token = localStorage.getItem('token');
+	//--------------------------------------
+	//              armazena o token no click do botão ok do login
+	
 	document.querySelector('.btn_ok').addEventListener('click', async () => {
-		
-		try {
-			let email = document.querySelector('.email').value
-			let pass = document.querySelector('.pass').value
-			
-			const json = await axios.post('https://reqres.in/api/login', {
+		var email = document.querySelector('.email').value
+		var pass = document.querySelector('.pass').value
+		var token = localStorage.getItem('token');
+			var json = await axios.post('https://reqres.in/api/login', {
 				email:  email,
 				password: pass
 			});
-			
-			if(json.data.token) {
-				token = json.data.token;
-				localStorage.setItem('token',token);
-				localStorage.setItem('active',json.status);
-				document.getElementById('drop').style.display='none'
-			}
-			
-			console.log(email,pass)	
-			console.log(json);
-			console.log(json.data.token+"na api response");
-			console.log(localStorage.token+"no local storage;");
-			console.log(localStorage.active+" status")
-		}
-		catch(e) {
-			let email = document.querySelector('.email').value = "";
-			let pass = document.querySelector('.pass').value = "";
-			document.getElementById('validate').style.display='block';
-			localStorage.active=400;
-		}	
-		
-		location.reload()
-});	
-console.log(localStorage.token);
-		console.log(token);
-		if(localStorage.token === token){
-			
-			try{
-					
-					document.getElementById('main-dados').style.display='none';
-					document.getElementById('img-div').style.display='none';
-					document.getElementById('login').style.display='none';
-					document.getElementById('login_sair').style.display='block';
-					document.getElementById('search_box').style.display='block';
-					document.getElementById('search').style.display='block';
-
-					var lista_api = document.querySelector('.lista_api');
-					var input = document.querySelector('.api_input');
-					var search = document.querySelector('.search')
-					search.addEventListener('click', async () => {
-					if (input.value != "" ) {
-						var pesquisa = input.value;
-						await axios.get('https://rickandmortyapi.com/api/character/?name='+ pesquisa )
-						.then(function(res){		
-							var docs = res.data.results;
-							console.log(res.status);
-							if (res.status === 200){
-								document.getElementById('result').style.display='block';
-								console.log(docs);	
-									for(var i=0;i < docs.length && i<100 ;i++) {
-										var li = document.createElement('li');
-										li.innerHTML = docs[i].name;
-										lista_api.appendChild(li);
-									}
-								} else {
-									alert('Pesquisa não encontrada!!');
-								}
-						});
-					} else {
-						alert("PESQUISA VAZIA")
-					}
-					
-					});
+			try {
+				if(json.data.token) {
+					token = json.data.token;
+					localStorage.setItem('token',token);
+					localStorage.setItem('active',json.status);
+					document.getElementById('drop').style.display='none'
 				}
-			catch(e){
-				console.log("erro aqui")
+				console.log(email,pass)	
+				console.log(json);
+				console.log(json.data.token+"na api response");
+				console.log(localStorage.token+"no local storage;");
+				console.log(localStorage.active+" status")
+			}
+			catch(e) {
+				let email = document.querySelector('.email').value = "";
+				let pass = document.querySelector('.pass').value = "";
+				document.getElementById('validate').style.display='block';
+				localStorage.active=400;
 			}	
+			location.reload()
+	});	
+	
+	//-------------------------------------------
+	//			Verifica se o token existe e exibe a página da pessoa logada 
+	//			carregando a api do rick and morty 
+	if(localStorage.token){	
+		try{		
+			document.getElementById('main-dados').style.display='none';
+			document.getElementById('img-div').style.display='none';
+			document.getElementById('login').style.display='none';
+			document.getElementById('login_sair').style.display='block';
+			document.getElementById('search_box').style.display='block';
+			document.getElementById('search').style.display='block';
+
+			var lista_api = document.querySelector('.lista_api');
+			var input = document.querySelector('.api_input');
+			var search = document.querySelector('.search')
+			search.addEventListener('click', async () => {
+			if (input.value != "" ) {
+				var pesquisa = input.value;
+				await axios.get('https://rickandmortyapi.com/api/character/?name='+ pesquisa )
+				.then(function(res){		
+					var docs = res.data.results;
+					console.log(res.status);
+					if (res.status === 200){
+						document.getElementById('result').style.display='block';
+						console.log(docs);	
+							for(var i=0;i < docs.length && i<100 ;i++) {
+								var li = document.createElement('li');
+								li.innerHTML = docs[i].name;
+								lista_api.appendChild(li);
+							}
+					} else {
+						alert('Pesquisa não encontrada!!');
+					}
+				});
+			} else {
+				alert("PESQUISA VAZIA")
+			}
+					
+			});
 		}
-		else console.log("difere");
-
-
-		document.querySelector('.login_sair').addEventListener('click',  () => {
-			localStorage.clear();
-			location.reload() });
+		catch(e){
+			console.log("erro aqui")
+		}	
+	}else {
+		console.log("nao logado!");
+	}
+	//----------------------------------
+	//			botão sair que limpa o localStorage e volta a página
+	document.querySelector('.login_sair').addEventListener('click',  () => {
+	localStorage.clear();
+	location.reload() });
 		
 	
 </script>
