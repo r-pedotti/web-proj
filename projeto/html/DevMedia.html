@@ -41,7 +41,7 @@
 	<!-- MAIN -->
 	<main>
 		<div class = "search_box" id = "search_box">
-			<input class = "api_input" placeholder="P E S Q U I S A R"></input>
+			<input class = "api_input" placeholder="P E S Q U I S A R  N O M E  P E R S O N A G E M"></input>
 			
 			<div class = "result" id = "result">
 				<ul class = "lista_api">
@@ -162,8 +162,9 @@
 									var img = document.createElement('img');
 									li.innerHTML = docs[i].name;
 									img.innerHTML = docs[i].image;
+									console.log(img);
 									lista_api.appendChild(li);
-									lista_api.appendChild(img);
+									lista_api.appendChild(img + "teste");
 								}
 						});
 					} else {
