@@ -20,6 +20,23 @@ html,body{
 	max-height: 507
 }
 
+.login_sair {
+	display: none;
+	font-size: 14px;
+    flex-grow: 0.3;
+	margin-right: 45px;
+	margin-bottom: 5px;
+    background-color: #9cbdce;
+    color: #0c3649;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 26px;
+    height: 45px;
+    width: 95px;
+    border: 0px;
+
+}
+
 .api_input {
 	width: 500px;
 	height: 30px;	

@@ -13,9 +13,8 @@
 		<div class=text_header>
 			<span>Tecnologias</span>
 			<span>Contrate um Programador</span>
-			
 		</div>
-		<input type='button' class="login" value='ENTRAR' onClick="show_login('dropdownLogin')"> 
+		<input type='button' class="login" id="login" value='ENTRAR' onClick="show_login('dropdownLogin')"> 
 				<div id = 'drop' class="dropdownLogin">
 					<label>Usuário</label>
 					<input class = "email" type="login"/>
@@ -26,16 +25,8 @@
 					<button id = "close" style="background-color: red;" onclick="close_login()"><b>X</b></button>
 				</div> 
 			</input>
+			<input type='button' class="login_sair" id="login_sair" value='SAIR'></input>
 		</button>
-	</header>
-	<header id="header2" style="display: none;">
-		<img src="../devmedia_logo.png" alt="" class="logo">
-	<!--	<div class=text_header>
-			<label>Pesquise por Personagem:</label><input class = "api_input" type="text">
-			<button onclick="search()" >Pesquisar</button>
-			<ul class = "lista_api">
-			</ul>
-		</div>-->
 	</header>
 	<!-- F I M   HEADER -->
 	<!-- MAIN -->
@@ -103,14 +94,14 @@
 {
     "email": "	"eve.holt@reqres.in",
     "password": "cityslicka"
-}*/
+}*/var token = localStorage.getItem('token');
 	document.querySelector('.btn_ok').addEventListener('click', async () => {
-		var token = localStorage.getItem('token');
+		
 		try {
 			let email = document.querySelector('.email').value
 			let pass = document.querySelector('.pass').value
 			
-			var json = await axios.post('https://reqres.in/api/login', {
+			const json = await axios.post('https://reqres.in/api/login', {
 				email:  email,
 				password: pass
 			});
@@ -134,15 +125,19 @@
 			document.getElementById('validate').style.display='block';
 			localStorage.active=400;
 		}	
-	
-
-		if(localStorage.token === json.data.token){
+		
+		location.reload()
+});	
+console.log(localStorage.token);
+		console.log(token);
+		if(localStorage.token === token){
 			
 			try{
-					document.getElementById('header1').style.display='none';
+					
 					document.getElementById('main-dados').style.display='none';
 					document.getElementById('img-div').style.display='none';
-					document.getElementById('header2').style.display='block';
+					document.getElementById('login').style.display='none';
+					document.getElementById('login_sair').style.display='block';
 					document.getElementById('search_box').style.display='block';
 					document.getElementById('search').style.display='block';
 
@@ -179,8 +174,13 @@
 			}	
 		}
 		else console.log("difere");
+
+
+		document.querySelector('.login_sair').addEventListener('click',  () => {
+			localStorage.clear();
+			location.reload() });
 		
-	});	
+	
 </script>
 </body>
 </html>
