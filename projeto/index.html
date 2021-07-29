@@ -145,11 +145,13 @@
 									li.innerHTML = docs[i].name;
 									lista_api.appendChild(li);
 								}
-						} else {
-							alert('Pesquisa não encontrada!!');
 						}
 					});
 				} catch(e) {
+				document.getElementById('msg_api').style.display = 'block';
+				document.getElementById('msg_api').innerHTML = "Não Encontrado!!!!!!!";
+				document.getElementById('result').style.display='none';
+
 				}
 			}
 			else {
