@@ -63,6 +63,9 @@
 	</main>
 <!-- J S  -->
 <script>
+	homep();
+	api(localStorage.getItem('token'));
+
 	var show_login = () => {
 		document.getElementById('drop').style.display = 'block';
 		document.getElementById('validate').style.display='none';
@@ -168,7 +171,6 @@
 	homep();
 	});
 
-	api(localStorage.getItem('token'));
 
 </script>
 </body>
