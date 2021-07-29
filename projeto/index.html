@@ -1,50 +1,180 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-	<link rel="stylesheet" href="reset.css">
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="css/style.css">
 	<title>DevMedia | Plataforma para Programadores</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
-
 <body>
 	<!-- HEADER -->
-	<header>
+	<header id="header1">
 		<img src="devmedia_logo.png" alt="" class="logo">
 		<div class=text_header>
-			<span>Tecnologias </span>
+			<span>Tecnologias</span>
 			<span>Contrate um Programador</span>
 		</div>
-		<div class="login">
-			<button class="cadastre">Cadastre-se</button>
-		</div>
-		<img class="icon" src="icon.png"></img>
+		<!--botão login-->
+		<input type='button' class="login" id="login" value='ENTRAR' onClick="show_login('dropdownLogin')"> 
+				<div id = 'drop' class="dropdownLogin">
+					<label>Usuário</label>
+					<input class = "email" type="login"/>
+					<label>Senha</label>
+					<input class = "pass" type="password"/>
+					<label id="validate" style="color: red; display: none;" >Usuário e/ou Senha invalido.</label>
+					<button class = "btn_ok">L O G I N</button>
+					<button id = "close" style="background-color: red;" onclick="close_login()"><b>X</b></button>
+				</div> 
+			<input type='button' class="login_sair" id="login_sair" value='SAIR'></input>
+		</button>
 	</header>
 	<!-- F I M   HEADER -->
 	<!-- MAIN -->
 	<main>
-		<div class="div-dados">
+		<div class = "search_box" id = "search_box">
+			<span class = "msg_api" id = "msg_api"></span>
+			<br>
+			<input minlength="3" type="text" class = "api_input" placeholder="P E S Q U I S A R  N O M E  P E R S O N A G E M"></input>
+			<div class = "result" id = "result" >
+				<ul class = "lista_api">
+				</ul>
+			</div>
+			
+		</div>
+		
+		<button  class = "search" id="search">Pesquisar</button>
+		
+		<div class="div-dados" id="main-dados">	
 			<div class="div1">
 				<h1>Nossa missão é fazer de você um</h1>
 				<h1 class="programador">Programador</h1>
 			</div>
-
 			<div class="contant2">
 				<div class="div2">
 					<p>A única plataforma para programadores que oferece uma experiência leve e gamificada de
 						aprendizado.<b>Conheça agora</b></p>
 				</div>
-
 				<div class="div3">
 					<button class="btn_cria_conta">Crie uma conta grátis</button>
 				</div>
 			</div>
 		</div>
-
-		<img class="div-img" src="img1.jpeg">
+		<img id="img-div" class="div-img" src="img1.jpeg">
 	</main>
+<!-- J S  -->
+<script>
+	/*               eve.holt@reqres.in      */
+	//-----------------------------------------------------------------------
+	//             responsável por faver o botao login aparecer e sumir
+	var show_login = () => {
+		document.getElementById('drop').style.display = 'block';
+		document.getElementById('validate').style.display='none'
+		}
+	var close_login = () => {
+		document.getElementById('drop').style.display = 'none';
+	}
+	//-------------------------------------------------------------------------
+	//              armazena o token no click do botão ok do login
+	document.querySelector('.btn_ok').addEventListener('click', async () => {
+		var email = document.querySelector('.email').value
+		var pass = document.querySelector('.pass').value
+		var token = localStorage.getItem('token');
+		if (email === null || email === "") {
+			document.getElementById('validate').style.display='block';
+			document.getElementById('validate').innerHTML = "E-mail Vazio!";
+			} else if (pass === null || pass === "") {
+				document.getElementById('validate').style.display='block';
+				document.getElementById('validate').innerHTML = "Senha Vazia!";
+				} else {
+					try {
+						var json = await axios.post('https://reqres.in/api/login', {
+							email:  email,
+							password: pass,
+						}, (error) => {
+							console.log("ausdhfui")
+						})
+					} catch(e) {
+						document.getElementById('validate').style.display='block';
+						document.getElementById('validate').innerHTML = "Usuário e Senha Errados!!!";
+					}
+					if(json.data.token) {
+						token = json.data.token;
+						localStorage.setItem('token',token);
+						localStorage.setItem('active',json.status);
+						document.getElementById('drop').style.display='none'
+						console.log(json);
+					} 	
+				location.reload()}
+		}); 
+
+
+	//-------------------------------------------------------------------------
+	//			Verifica se o token existe e exibe a página da pessoa logada 
+	//			carregando a api do rick and morty 
+
+
+	if(localStorage.token){	
+		try{		
+			document.getElementById('main-dados').style.display='none';
+			document.getElementById('img-div').style.display='none';
+			document.getElementById('login').style.display='none';
+			document.getElementById('login_sair').style.display='block';
+			document.getElementById('search_box').style.display='block';
+			document.getElementById('search').style.display='block';
+
+			var lista_api = document.querySelector('.lista_api');
+			var input = document.querySelector('.api_input');
+			var search = document.querySelector('.search')
+			search.addEventListener('click', async () => {
+
+
+			if (input.value.length > 3) {
+				var pesquisa = input.value;
+
+				try {
+
+					await axios.get('https://rickandmortyapi.com/api/character/?name='+ pesquisa )
+					.then(function(res){		
+						var docs = res.data.results;
+						console.log(res.status);
+
+						if (res.status === 200){
+							document.getElementById('msg_api').style.display = 'none';
+							document.getElementById('result').style.display='block';
+							console.log(docs);	
+								for(var i=0;i < docs.length && i<100 ;i++) {
+									var li = document.createElement('li');
+									li.innerHTML = docs[i].name;
+									lista_api.appendChild(li);
+								}
+						} else {
+							alert('Pesquisa não encontrada!!');
+						}
+					});
+				} catch(e) {
+					
+				}
+			
+			}
+			else {
+				document.getElementById('msg_api').style.display = 'block';
+				document.getElementById('msg_api').innerHTML = "A pesquisa deve ter mais de 3 caracteres!!!!";
+				document.getElementById('result').style.display='none';
+
+			}	
+			});
+		}
+		catch(e){
+			console.log("erro aqui")
+		}	
+	}else {
+		console.log("nao logado!");
+	}
+	//------------------------------------------------------------------------
+	//			botão sair que limpa o localStorage e volta a página
+	document.querySelector('.login_sair').addEventListener('click',  () => {
+	localStorage.clear();
+	location.reload() });
+</script>
 </body>
-
-
 </html>

@@ -12,8 +12,14 @@ html,body{
 	height: 200px;
 }
 
+.msg_api {
+	color: "#FFF";
+	font-size: 20px;
+	display: none;
+}
+
 .search_box {
-	background-color: black;
+	background-color: inherit;
 	margin-top: 35px;
 	overflow: auto;	
 	display: none;
@@ -44,10 +50,12 @@ html,body{
 
 .result {
 	width: 507px;
-	height: 500px;
+	height: 400px;
 	background-color: #D9E7EE;
 	position: relative;
 	display: none;
+	overflow: auto;	
+	
 
 }
 
