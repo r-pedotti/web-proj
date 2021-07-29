@@ -68,7 +68,7 @@
 	//             responsável por faver o botao login aparecer e sumir
 	var show_login = () => {
 		document.getElementById('drop').style.display = 'block';
-		document.getElementById('validate').style.display='none'
+		document.getElementById('validate').style.display='none';
 		}
 	var close_login = () => {
 		document.getElementById('drop').style.display = 'none';
@@ -76,8 +76,8 @@
 	//-------------------------------------------------------------------------
 	//              armazena o token no click do botão ok do login
 	document.querySelector('.btn_ok').addEventListener('click', async () => {
-		var email = document.querySelector('.email').value
-		var pass = document.querySelector('.pass').value
+		var email = document.querySelector('.email').value;
+		var pass = document.querySelector('.pass').value;
 		var token = localStorage.getItem('token');
 		if (email === null || email === "") {
 			document.getElementById('validate').style.display='block';
