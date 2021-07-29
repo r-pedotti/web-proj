@@ -63,9 +63,6 @@
 	</main>
 <!-- J S  -->
 <script>
-	/*               eve.holt@reqres.in      */
-	//-----------------------------------------------------------------------
-	//             responsável por faver o botao login aparecer e sumir
 	var show_login = () => {
 		document.getElementById('drop').style.display = 'block';
 		document.getElementById('validate').style.display='none';
@@ -73,16 +70,24 @@
 	var close_login = () => {
 		document.getElementById('drop').style.display = 'none';
 	}
-	//-------------------------------------------------------------------------
-	//              armazena o token no click do botão ok do login
+
+	function homep () {
+		document.getElementById('main-dados').style.display='block';
+		document.getElementById('img-div').style.display='block';
+		document.getElementById('login').style.display='block';
+		document.getElementById('login_sair').style.display='none';
+		document.getElementById('search_box').style.display='none';
+		document.getElementById('search').style.display='none';
+
 	document.querySelector('.btn_ok').addEventListener('click', async () => {
 		var email = document.querySelector('.email').value;
 		var pass = document.querySelector('.pass').value;
 		var token = localStorage.getItem('token');
-		if (email === null || email === "") {
+
+		if (email.length < 4) {
 			document.getElementById('validate').style.display='block';
 			document.getElementById('validate').innerHTML = "E-mail Vazio!";
-			} else if (pass === null || pass === "") {
+			} else if (pass.length < 4) {
 				document.getElementById('validate').style.display='block';
 				document.getElementById('validate').innerHTML = "Senha Vazia!";
 				} else {
@@ -90,59 +95,49 @@
 						var json = await axios.post('https://reqres.in/api/login', {
 							email:  email,
 							password: pass,
-						}, (error) => {
-							console.log("ausdhfui")
 						})
+						if(json.data.token) {
+							token = json.data.token;
+							localStorage.setItem('token',token);
+							localStorage.setItem('active',json.status);
+							api(token);
+						}
 					} catch(e) {
 						document.getElementById('validate').style.display='block';
-						document.getElementById('validate').innerHTML = "Usuário e Senha Errados!!!";
-					}
-					if(json.data.token) {
-						token = json.data.token;
-						localStorage.setItem('token',token);
-						localStorage.setItem('active',json.status);
-						document.getElementById('drop').style.display='none'
-						console.log(json);
-					} 	
-				location.reload()}
-		}); 
-
-
-	//-------------------------------------------------------------------------
-	//			Verifica se o token existe e exibe a página da pessoa logada 
-	//			carregando a api do rick and morty 
-
-
-	if(localStorage.token){	
-		try{		
-			document.getElementById('main-dados').style.display='none';
-			document.getElementById('img-div').style.display='none';
-			document.getElementById('login').style.display='none';
-			document.getElementById('login_sair').style.display='block';
-			document.getElementById('search_box').style.display='block';
-			document.getElementById('search').style.display='block';
-
+						document.getElementById('validate').innerHTML = "Usuário e Senha Invalidos!";
+					}	
+				}		
+	}); }
+	
+	function api (token) {
+	if(token != null){	
+		document.getElementById('drop').style.display='none';
+		document.getElementById('main-dados').style.display='none';
+		document.getElementById('img-div').style.display='none';
+		document.getElementById('login').style.display='none';
+		document.getElementById('login_sair').style.display='block';
+		document.getElementById('search_box').style.display='block';
+		document.getElementById('search').style.display='block';
+			
 			var lista_api = document.querySelector('.lista_api');
 			var input = document.querySelector('.api_input');
 			var search = document.querySelector('.search')
-			search.addEventListener('click', async () => {
 
+			try{
+			search.addEventListener('click', async () => {
 
 			if (input.value.length > 3) {
 				var pesquisa = input.value;
-
 				try {
-
 					await axios.get('https://rickandmortyapi.com/api/character/?name='+ pesquisa )
 					.then(function(res){		
 						var docs = res.data.results;
 						console.log(res.status);
-
 						if (res.status === 200){
 							document.getElementById('msg_api').style.display = 'none';
 							document.getElementById('result').style.display='block';
 							console.log(docs);	
-								for(var i=0;i < docs.length && i<100 ;i++) {
+								for(var i=0;i < docs.length ;i++) {
 									var li = document.createElement('li');
 									li.innerHTML = docs[i].name;
 									lista_api.appendChild(li);
@@ -152,15 +147,12 @@
 						}
 					});
 				} catch(e) {
-					
 				}
-			
 			}
 			else {
 				document.getElementById('msg_api').style.display = 'block';
 				document.getElementById('msg_api').innerHTML = "A pesquisa deve ter mais de 3 caracteres!!!!";
 				document.getElementById('result').style.display='none';
-
 			}	
 			});
 		}
@@ -169,12 +161,15 @@
 		}	
 	}else {
 		console.log("nao logado!");
-	}
-	//------------------------------------------------------------------------
-	//			botão sair que limpa o localStorage e volta a página
+	} }
+	
 	document.querySelector('.login_sair').addEventListener('click',  () => {
 	localStorage.clear();
-	location.reload() });
+	homep();
+	});
+
+	api(localStorage.getItem('token'));
+
 </script>
 </body>
 </html>
