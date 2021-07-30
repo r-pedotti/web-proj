@@ -13,7 +13,7 @@ html,body{
 }
 
 .msg_api {
-	color: "#FFF";
+	color: white;
 	font-size: 20px;
 	display: none;
 }
@@ -23,7 +23,8 @@ html,body{
 	margin-top: 35px;
 	overflow: auto;	
 	display: none;
-	max-height: 507
+	max-height: 507;
+	flex-direction: column;
 }
 
 .login_sair {
@@ -64,9 +65,11 @@ html,body{
 }
 
 .search{
-	color: #1F4F66;
+	color: #082431;
 	display: none;
 	margin-top: 35px;
+	width: 20%;
+	align-self: center;
 }
 
 header{
@@ -88,7 +91,6 @@ header{
 .text_header {
 	flex-grow: 8;
 }
-
 
 span {
 	font-family: sans-serif;
@@ -247,7 +249,7 @@ main{
 	width: 60%;
 }
 .div2 p{
-	width: 100%;
+	width: 90%;
 }
 
 .contant{
