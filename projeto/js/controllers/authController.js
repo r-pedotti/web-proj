@@ -15,4 +15,21 @@ router.post('/register', async (req,res) => {
     }
 });
 
+router.post('/authenticate', async (req,res) => {
+     const {email, pwd} = req.body;
+     
+     const user = await User.findOne({email}).select('+pwd');
+    
+    if(!user){
+        return res.status(400).send({error: 'User not found. '});
+    }
+
+    if( pwd != user.pwd){
+        return res.status(400).send({error: 'Invalid password. '})
+    }
+
+    return res.send({user});
+})
+
 module.exports = app => app.use('/auth',router);
+
