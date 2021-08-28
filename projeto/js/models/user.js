@@ -20,4 +20,4 @@ pwd:{
 
 const user = mongoose.model('User', userSchema);
 
-module.exports = User;
+module.exports = user;

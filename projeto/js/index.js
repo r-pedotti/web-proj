@@ -11,4 +11,6 @@ res.send('pong');
 
 });
 
+require('./controllers/authController')(app);
+
 app.listen(3300);

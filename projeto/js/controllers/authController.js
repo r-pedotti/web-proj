@@ -10,8 +10,9 @@ router.post('/register', async (req,res) => {
     
         return res.send({user});
     }
-    catch(err){
-        return res.status(400).send("error 400: register feiled");
+    catch(error){
+        return res.status(400).send("error 400: register feiled"+error);
     }
+});
 
-})
+module.exports = app => app.use('/auth',router);
