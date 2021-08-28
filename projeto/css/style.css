@@ -13,6 +13,7 @@ html,body{
 }
 
 .msg_api {
+	background-color: blueviolet;
 	color: white;
 	font-size: 20px;
 	display: none;
